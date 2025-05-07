@@ -8,7 +8,6 @@
 
     # shell
     ../../app/shell.nix
-    ../../app/alacritty.nix
 
     # apps
     ../../app/neovim.nix
