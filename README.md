@@ -65,12 +65,12 @@ Clone this repo to your `/mnt/etc/nixos` folder
 git clone https://github.com/Nat2-Dev/dots.git .
 ```
 
-Add your ssh private key to `/mtn/etc/ssh/id_rsa` 
+Add your ssh private key to `/mnt/etc/ssh/nat_id_ed25519` 
 
 install the flake, and umount the filesystem, and then reboot 
 
 ```bash
-nixos-install --flake .#moonlark --no-root-passwd
+nixos-install --flake .#zoomies --no-root-passwd
 umount /mnt
 reboot
 ```
