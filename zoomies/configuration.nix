@@ -72,7 +72,6 @@
     pkgs.zsh
     pkgs.starship
     pkgs.gh
-    pkgs.swww
     pkgs.wluma
     pkgs.brightnessctl
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
@@ -85,7 +84,6 @@
     pkgs.jq
     pkgs.playerctl
     pkgs.firefox
-    pkgs.slack
     pkgs.nautilus
     pkgs.totem
     pkgs.loupe
@@ -100,78 +98,37 @@
     pkgs.go
     pkgs.unstable.bun
     pkgs.pitivi
-    pkgs.unstable.arduino-ide
-    pkgs.unstable.arduino-cli
     pkgs.lazygit
-    pkgs.vhs
     pkgs.video-trimmer
     pkgs.ffmpeg
-    pkgs.ngrok
     pkgs.openssl
-    pkgs.nodePackages_latest.prisma
-    pkgs.nodejs_22
-    pkgs.invoice
-    pkgs.pop
-    pkgs.gum
-    pkgs.unstable.kicad-testing
-    pkgs.unstable.mitmproxy
     pkgs.glow
     pkgs.gnome-online-accounts
     pkgs.gnome-online-accounts-gtk
-    pkgs.zoom-us
-    pkgs.mods
     (pkgs.chromium.override { enableWideVine = true; })
     pkgs.python3
-    pkgs.qflipper
     pkgs.inkscape
     pkgs.jdk23
     pkgs.unstable.zed-editor
     pkgs.gnome-disk-utility
-    pkgs.torrential
-    pkgs.unstable.zola
-    pkgs.unstable.deno
     pkgs.unstable.amberol
-    pkgs.unstable.apktool
-    pkgs.unstable.biome
     pkgs.gcc
     pkgs.love
     pkgs.unstable.aseprite
     pkgs.audacity
     pkgs.imagemagick
-    pkgs.wtype
     pkgs.rustc
     pkgs.cargo
-    pkgs.gobang
-    pkgs.caido
     inputs.ghostty.packages.x86_64-linux.default
     pkgs.baobab
     pkgs.nix-prefetch
-    inputs.frc-nix.packages.${pkgs.system}.elastic-dashboard
-    inputs.frc-nix.packages.${pkgs.system}.pathplanner
-    inputs.frc-nix.packages.${pkgs.system}.roborioteamnumbersetter
-    inputs.frc-nix.packages.${pkgs.system}.sysid
-    inputs.frc-nix.packages.${pkgs.system}.wpilib-utility
-    inputs.frc-nix.packages.${pkgs.system}.advantagescope
     pkgs.hyprpaper
     pkgs.lxde.lxsession
-    pkgs.godot_4
-    pkgs.bambu-studio
-    pkgs.unstable.orca-slicer
     pkgs.exiftool
     pkgs.zenity
-    pkgs.iodine
     pkgs.libreoffice
-    pkgs.blender
-    pkgs.screen
     pkgs.font-manager
-    pkgs.prismlauncher
-    pkgs.openboardview
-    pkgs.unstable.claude-code
-    inputs.claude-desktop.packages.${pkgs.system}.claude-desktop-with-fhs
-    pkgs.ruby
-    pkgs.unstable.kikit
     pkgs.cmake
-    pkgs.unstable.zotero
     pkgs.wl-screenrec
     pkgs.libnotify
     pkgs.coreutils
@@ -185,7 +142,7 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/kierank/etc/nixos";
+    flake = "/home/nat/etc/nixos";
   };
 
   services.gnome.gnome-keyring.enable = true;
@@ -214,20 +171,20 @@
   ];
 
   # import the secret
-  age.identityPaths = [ "/home/kierank/.ssh/id_rsa" "/etc/ssh/id_rsa" "/mnt/etc/ssh/id_rsa" ];
+  age.identityPaths = [ "/home/nat/.ssh/nat_id_ed25519" "/etc/ssh/nat_id_ed25519" "/mnt/etc/ssh/nat_id_ed25519" ];
   age.secrets = {
     wifi = {
       file = ../secrets/wifi.age;
-      owner = "kierank";
+      owner = "nat";
     };
     resend = {
       file = ../secrets/resend.age;
-      owner = "kierank";
+      owner = "nat";
     };
     wakatime = {
       file = ../secrets/wakatime.age;
-      path = "/home/kierank/.wakatime.cfg";
-      owner = "kierank";
+      path = "/home/nat/.wakatime.cfg";
+      owner = "nat";
     };
   };
 
@@ -237,38 +194,22 @@
     XDG_DATA_HOME   = "$HOME/.local/share";
     XDG_STATE_HOME  = "$HOME/.local/state";
     NIXOS_OZONE_WL = "1";
-    PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
-    PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
-    PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
-    RESEND_API_KEY = ''$(${pkgs.coreutils}/bin/cat ${config.age.secrets.resend.path})'';
-    POP_FROM = "me@dunkirk.sh";
   };
 
   # setup the network
   networking = {
-    hostName = "moonlark";
+    hostName = "zoomies";
     nameservers = [ "1.1.1.1" "9.9.9.9" ];
     wireless = {
       secretsFile = config.age.secrets.wifi.path;
       userControlled.enable = true;
       enable = true;
       networks = {
-        "KlukasNet".pskRaw = "ext:psk_home";
-        "Everseen".pskRaw = "ext:psk_hotspot";
         "SAAC Sanctuary".pskRaw = "ext:psk_church";
-        "MVNU-student" = {};
-        "Status Solutions Guest".pskRaw = "ext:psk_robotics";
-        "FRC-1317-CECE".psk = "digitalfusion";
-        "1317-fortress-of-awesomeness" = {};
-        "PAST PD".pskRaw = "ext:psk_past";
-        "Heartland".psk = "beourguest";
-        "WPL_Public_AccessII" = {};
         "Yowzaford".pskRaw = "ext:psk_rhoda";
       };
     };
   };
-
-  virtualisation.waydroid.enable = true;
 
   programs.nix-ld.enable = true;
 
@@ -276,41 +217,30 @@
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
-    kierank = {
+    nat = {
       # You can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
       initialPassword = "lolzthisaintsecure!";
       isNormalUser = true;
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzEEjvbL/ttqmYoDjxYQmDIq36BabROJoXgQKeh9liBxApwp+2PmgxROzTg42UrRc9pyrkq5kVfxG5hvkqCinhL1fMiowCSEs2L2/Cwi40g5ZU+QwdcwI8a4969kkI46PyB19RHkxg54OUORiIiso/WHGmqQsP+5wbV0+4riSnxwn/JXN4pmnE//stnyAyoiEZkPvBtwJjKb3Ni9n3eNLNs6gnaXrCtaygEZdebikr9kS2g9mM696HvIFgM6cdR/wZ7DcLbG3IdTXuHN7PC3xxL+Y4ek5iMreQIPmuvs4qslbthPGYoYbYLUQiRa9XO5s/ksIj5Z14f7anHE6cuTQVpvNWdGDOigyIVS5qU+4ZF7j+rifzOXVL48gmcAvw/uV68m5Wl/p0qsC/d8vI3GYwEsWG/EzpAlc07l8BU2LxWgN+d7uwBFaJV9VtmUDs5dcslsh8IbzmtC9gq3OLGjklxTfIl6qPiL8U33oc/UwqzvZUrI2BlbagvIZYy6rP+q0= kierank@mockingjay"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINEBN1C/1EatKLnv84NiVSc7aEDirVfKyfKDmSf1PP5r nat@zoomies"
       ];
       extraGroups = ["wheel" "networkmanager" "audio" "video" "docker" "plugdev" "input" "dialout" "docker"];
     };
     root.openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzEEjvbL/ttqmYoDjxYQmDIq36BabROJoXgQKeh9liBxApwp+2PmgxROzTg42UrRc9pyrkq5kVfxG5hvkqCinhL1fMiowCSEs2L2/Cwi40g5ZU+QwdcwI8a4969kkI46PyB19RHkxg54OUORiIiso/WHGmqQsP+5wbV0+4riSnxwn/JXN4pmnE//stnyAyoiEZkPvBtwJjKb3Ni9n3eNLNs6gnaXrCtaygEZdebikr9kS2g9mM696HvIFgM6cdR/wZ7DcLbG3IdTXuHN7PC3xxL+Y4ek5iMreQIPmuvs4qslbthPGYoYbYLUQiRa9XO5s/ksIj5Z14f7anHE6cuTQVpvNWdGDOigyIVS5qU+4ZF7j+rifzOXVL48gmcAvw/uV68m5Wl/p0qsC/d8vI3GYwEsWG/EzpAlc07l8BU2LxWgN+d7uwBFaJV9VtmUDs5dcslsh8IbzmtC9gq3OLGjklxTfIl6qPiL8U33oc/UwqzvZUrI2BlbagvIZYy6rP+q0= kierank@mockingjay"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINEBN1C/1EatKLnv84NiVSc7aEDirVfKyfKDmSf1PP5r nat@zoomies"
     ];
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
   programs.hyprland.enable = true;
   services.hypridle.enable = true;
 
-  programs.niri = {
-    enable = true;
-  };
-
   programs.xwayland.enable = lib.mkForce true;
 
   virtualisation.docker.enable = true;
 
-  services.udev.packages = [ pkgs.qFlipper pkgs.via ];
+  services.udev.packages = [ pkgs.via ];
 
   security.polkit.enable = true;
 
@@ -352,13 +282,8 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 4455 51820 ];
-    allowedUDPPorts = [ 4455 51820 ];
-  };
-
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "client";
+    allowedTCPPorts = [ ];
+    allowedUDPPorts = [ ];
   };
 
   services.devmon.enable = true;

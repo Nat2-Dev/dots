@@ -13,13 +13,8 @@
     # apps
     ../../app/neovim.nix
     ../../app/git.nix
-    ../../app/foot.nix
-    #../../app/spotify.nix
     ../../app/tofi.nix
-    ../../app/vscode.nix
-    ../../app/obs.nix
     ../../app/ghostty.nix
-    ../../app/irssi.nix
   ];
 
   nixpkgs = {
@@ -43,8 +38,8 @@
   };
 
   home = {
-    username = "kierank";
-    homeDirectory = "/home/kierank";
+    username = "nat";
+    homeDirectory = "/home/nat";
   };
 
   # Add stuff for your user as you see fit:

@@ -8,8 +8,8 @@
   # git config
   programs.git = {
     enable = true;
-    userName = "Kieran Klukas";
-    userEmail = "me@dunkirk.sh";
+    userName = "Nat";
+    userEmail = "hellohumans963@gmail.com";
     aliases = {
       c = "commit";
       p = "push";
@@ -23,7 +23,7 @@
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowedSigners";
-      user.signingKey = "~/.ssh/id_rsa.pub";
+      user.signingKey = "~/.ssh/nat_id_ed25519.pub";
       pull.rebase = true;
       push.autoSetupRemote = true;
     };

@@ -77,11 +77,11 @@ reboot
 
 Pray to the nix gods that it works 🙏
 
-If it worked then you should be able to login with the user `kierank` and the password `lolzthisaintsecure!`
+If it worked then you should be able to login with the user `nat` and the password `lolzthisaintsecure!`
 
 You should immediately change the password
 ```bash
-passwd kierank
+passwd nat
 ```
 
 Move the config to your local directory, link to `/etc/nixos`, and change permissions
@@ -89,14 +89,14 @@ Move the config to your local directory, link to `/etc/nixos`, and change permis
 mkdir ~/etc; sudo mv /etc/nixos ~/etc
 sudo ln -s ~/etc/nixos /etc
 sudo chown -R $(id -un):users ~/etc/nixos
-sudo chown kierank -R ~/etc/nixos
-sudo chown kierank -R ~/etc/nixos/.*
+sudo chown nat -R ~/etc/nixos
+sudo chown nat -R ~/etc/nixos/.*
 ```
 
 17. Setup the fingerprint reader and verify it works (you may need to swipe your finger across the fingerprint sensor instead of simply laying it there)
 ```bash 
-sudo fprintd-enroll -f right-index-finger kierank
-sudo fprintd-verify kierank
+sudo fprintd-enroll -f right-index-finger nat
+sudo fprintd-verify nat
 ```
 Finally enable [atuin](https://atuin.sh/)
 

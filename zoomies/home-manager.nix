@@ -8,7 +8,7 @@
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
       # Import your home-manager configuration
-      kierank = import ../home-manager/machines/zoomies;
+      nat = import ../home-manager/machines/zoomies;
     };
   };
 }
