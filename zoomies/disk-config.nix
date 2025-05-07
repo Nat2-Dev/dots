@@ -14,6 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [ "umask=0077" ];
               };
             };
             root = {
@@ -21,9 +22,29 @@
               content = {
                 type = "zfs";
                 pool = "zroot";
-                mountpoint = "/";
               };
             };
+          };
+        };
+      };
+    };
+    zpool = {
+      zroot = {
+        type = "zpool";
+        rootFsOptions = {
+          compression = "zstd";
+          atime = "off";
+          relatime = "on";
+        };
+        options = {
+          ashift = "12";
+          autotrim = "on";
+        };
+        mountpoint = "/";
+        datasets = {
+          "root" = {
+            type = "zfs_fs";
+            mountpoint = "/";
           };
         };
       };
