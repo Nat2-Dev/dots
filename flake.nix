@@ -12,9 +12,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # NixOS hardware configuration
-    hardware.url = "github:NixOS/nixos-hardware/master";
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +40,6 @@
     lix-module,
     agenix,
     home-manager,
-    nixos-hardware,
     hyprland-contrib,
     ghostty,
     ...
