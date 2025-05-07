@@ -34,6 +34,27 @@
 
 Install NixOS via the [official guide](https://nixos.org/download.html)
 
+Connect to wifi
+
+```bash 
+wpa_passphrase your-ESSID your-passphrase | sudo tee /etc/wpa_supplicant.conf 
+sudo systemctl restart wpa_supplicant
+```
+
+Check with `ping 1.1.1.1` if that doesn't work then use `wpa_cli`
+
+```bash 
+wpa_cli
+
+add_network 0 ssid "put your ssid here"
+
+add_network 0 psk "put your password here"
+
+enable network 0
+
+exit
+```
+
 Aquire root permissions while keeping your current context with
 
 ```bash
@@ -48,29 +69,30 @@ nixos-rebuild switch
 
 Download the disk configuration and run it 
 ```bash
-curl -L https://github.com/Nat2-Dev/dots/raw/main/zoomies/disk-config.nix -o /tmp/disk-config.nix
-nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disk-config.nix
+curl -L https://github.com/taciturnaxolotl/dots/raw/main/moonlark/disk-config.nix -o /tmp/disk-config.nix
+nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount /tmp/disk-config.nix
 ```
 
-Mount disk with and cd into it
+Run nixos generate config and cd into it
 
 ```bash
-mount | grep /mnt
+nixos-generate-config --root /mnt
 cd /mnt/etc/nixos
 ```
 
 Clone this repo to your `/mnt/etc/nixos` folder
 
 ```bash
-git clone https://github.com/Nat2-Dev/dots.git .
+rm *
+git clone https://github.com/taciturnaxolotl/dots.git .
 ```
 
-Add your ssh private key to `/mnt/etc/ssh/nat_id_ed25519` 
+Add your ssh private key to `/mnt/etc/ssh/id_rsa` 
 
 install the flake, and umount the filesystem, and then reboot 
 
 ```bash
-nixos-install --flake .#zoomies --no-root-passwd
+nixos-install --flake .#moonlark --no-root-passwd
 umount /mnt
 reboot
 ```
