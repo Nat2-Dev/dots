@@ -48,7 +48,7 @@ nixos-rebuild switch
 
 Download the disk configuration and run it 
 ```bash
-curl https://github.com/Nat2-Dev/dots/raw/master/moonlark/disk-config.nix -o /tmp/disk-config.nix
+curl -L https://github.com/Nat2-Dev/dots/raw/main/zoomies/disk-config.nix -o /tmp/disk-config.nix
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disk-config.nix
 ```
 

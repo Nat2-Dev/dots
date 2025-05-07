@@ -19,8 +19,8 @@
             root = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "zfs";
+                type = "zfs";
+                pool = "zroot";
                 mountpoint = "/";
               };
             };
