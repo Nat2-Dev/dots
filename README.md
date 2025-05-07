@@ -1,4 +1,4 @@
-# Kieran's Dots
+# Nathaniel's Dots
 
 ![nix rebuild with flake update](.github/images/nix-update.webp)
 
@@ -48,7 +48,7 @@ nixos-rebuild switch
 
 Download the disk configuration and run it 
 ```bash
-curl https://github.com/taciturnaxolotl/dots/raw/master/moonlark/disk-config.nix -o /tmp/disk-config.nix
+curl https://github.com/Nat2-Dev/dots/raw/master/moonlark/disk-config.nix -o /tmp/disk-config.nix
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disk-config.nix
 ```
 
@@ -62,7 +62,7 @@ cd /mnt/etc/nixos
 Clone this repo to your `/mnt/etc/nixos` folder
 
 ```bash
-git clone https://github.com/taciturnaxolotl/dots.git .
+git clone https://github.com/Nat2-Dev/dots.git .
 ```
 
 Add your ssh private key to `/mtn/etc/ssh/id_rsa` 
