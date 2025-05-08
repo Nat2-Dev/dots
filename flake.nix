@@ -31,6 +31,11 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -40,6 +45,7 @@
     lix-module,
     agenix,
     home-manager,
+    hyprland-contrib,
     ghostty,
     ...
   } @ inputs: let
