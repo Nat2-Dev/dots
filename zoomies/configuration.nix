@@ -170,10 +170,6 @@
       file = ../secrets/wifi.age;
       owner = "nat";
     };
-    resend = {
-      file = ../secrets/resend.age;
-      owner = "nat";
-    };
     wakatime = {
       file = ../secrets/wakatime.age;
       path = "/home/nat/.wakatime.cfg";
