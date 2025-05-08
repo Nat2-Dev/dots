@@ -5,9 +5,7 @@
 > [!CAUTION]
 > These dots are highly prone to change / breakage.
 > 
-> ~I am not a nix os expert (this is my first time touching nix), so I'm not sure if this will work or not. I'm just trying to get my dots up on github.~
->  
-> After `284` successful days of these dots being in constant operation, many many rebuilds, and `364` commits these dots have been rock solid and I have no complaints.
+> Originally sourced from [`taciturnaxolotl`](https://github.com/taciturnaxoltol/dots)'s dots
 
 ## The layout
 
@@ -27,10 +25,6 @@
 ```
 
 ## Installation
-
-> ~~I have absolutely no idea how to install this~~ I kinda understand now?
->   
-> ⚠️ These installation instructions are being actively worked on as I test installation on a friend's computer  
 
 Install NixOS via the [official guide](https://nixos.org/download.html)
 
