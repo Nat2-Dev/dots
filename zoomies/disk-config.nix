@@ -14,37 +14,16 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
               };
             };
             root = {
               size = "100%";
               content = {
-                type = "zfs";
-                pool = "zroot";
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
-          };
-        };
-      };
-    };
-    zpool = {
-      zroot = {
-        type = "zpool";
-        rootFsOptions = {
-          compression = "zstd";
-          atime = "off";
-          relatime = "on";
-        };
-        options = {
-          ashift = "12";
-          autotrim = "on";
-        };
-        mountpoint = "/";
-        datasets = {
-          "root" = {
-            type = "zfs_fs";
-            mountpoint = "/";
           };
         };
       };
