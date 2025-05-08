@@ -72,7 +72,7 @@ nixos-rebuild switch
 
 Download the disk configuration and run it 
 ```bash
-curl -L https://github.com/taciturnaxolotl/dots/raw/main/moonlark/disk-config.nix -o /tmp/disk-config.nix
+curl -L https://github.com/Nat2-Dev/dots/raw/main/zoomies/disk-config.nix -o /tmp/disk-config.nix
 nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode destroy,format,mount /tmp/disk-config.nix
 ```
 
@@ -87,7 +87,7 @@ Clone this repo to your `/mnt/etc/nixos` folder
 
 ```bash
 rm *
-git clone https://github.com/taciturnaxolotl/dots.git .
+git clone https://github.com/Nat2-Dev/dots.git .
 ```
 
 Add your ssh private key to `/mnt/etc/ssh/id_rsa` 
@@ -95,7 +95,7 @@ Add your ssh private key to `/mnt/etc/ssh/id_rsa`
 install the flake, and umount the filesystem, and then reboot 
 
 ```bash
-nixos-install --flake .#moonlark --no-root-passwd
+nixos-install --flake .#zoomies --no-root-passwd
 umount /mnt
 reboot
 ```
