@@ -40,7 +40,6 @@
     lix-module,
     agenix,
     home-manager,
-    hyprland-contrib,
     ghostty,
     ...
   } @ inputs: let
