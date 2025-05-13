@@ -1,4 +1,4 @@
-# Nathaniel's Dots
+# Nat's Dots
 
 ![nix rebuild with flake update](.github/images/nix-update.webp)
 
